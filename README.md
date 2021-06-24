@@ -3,8 +3,7 @@
 
 > 让你的Activity跳转与参数传递更简单、便捷
 
-[![Release](https://jitpack.io/v/voisen/RxActivity.svg)]
-(https://jitpack.io/#voisen/RxActivity) 
+[![Release](https://jitpack.io/v/voisen/RxActivity.svg)](https://jitpack.io/#voisen/RxActivity) 
 
 类似于 `Retrofit` 网络请求框架
 
@@ -32,11 +31,14 @@
 
 ````
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	...
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+		...
 	}
+	...
+}
 
 ````
 
@@ -45,8 +47,10 @@ allprojects {
 
 ````
 dependencies {
-	        implementation 'com.github.voisen:RxActivity:0.0.1-alpha'
-	}
+    ....
+    implementation 'com.github.voisen:RxActivity:0.0.1-alpha'
+    ....
+}
 	
 ````
 
