@@ -10,17 +10,31 @@ import com.voisen.rxactivity.anno.TrickActivity;
 
 import io.reactivex.rxjava3.core.Observable;
 
-public interface MyActivity {
+public interface ActivityService {
 
-    @TrickActivity(clazz = AboutActivity.class)
+    /**
+     * 指定跳转的Activity为`AboutActivity`
+     * @param value 传递的参数
+     */
+    @TrickActivity(className = "com.voisen.rxactivity.AboutActivity")
     Observable<Intent> goAbout(@ExtraValue("value") String value);
 
+    /**
+     * 隐式跳转到指定的Action, @IntentOptions 优先级 要小于 @IntentValue 优先级
+     * @param pkgName 传入包名, 相当与调用 intent.setPackageName(pkgName)
+     */
     @IntentOptions(action = "rxactivity_test")
     Observable<Intent> goImplicit(@IntentValue(IntentType.PackageName) String pkgName);
 
+    /**
+     * 指定跳转Activity, 且无回传参数
+     */
     @TrickActivity(clazz = FullscreenActivity.class)
     void goFullscreen();
 
+    /**
+     * 指定跳转Activity, 并指定跳转的`ActivityOptions`
+     */
     @TrickActivity(clazz = ImageActivity.class)
     void showImage(ActivityOptions options);
 

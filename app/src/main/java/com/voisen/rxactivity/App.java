@@ -4,13 +4,13 @@ import android.app.Application;
 
 public class App extends Application {
 
-    public static MyActivity activitys;
+    public static ActivityService activitys;
 
     @Override
     public void onCreate() {
         super.onCreate();
         RxActivity.init(this);
         activitys = new RxActivity.Builder()
-                .create(MyActivity.class);
+                .create(ActivityService.class);
     }
 }
