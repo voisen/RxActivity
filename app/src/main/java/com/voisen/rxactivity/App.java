@@ -11,6 +11,7 @@ public class App extends Application {
         super.onCreate();
         RxActivity.init(this);
         activitys = new RxActivity.Builder()
+                .addInterceptor(new ActivityInterceptor())
                 .create(ActivityService.class);
     }
 }

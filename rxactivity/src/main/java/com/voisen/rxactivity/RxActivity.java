@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -26,9 +27,9 @@ import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.rxjava3.core.Observable;
-
 public final class RxActivity implements InvocationHandler {
+
+    private static final String TAG = "RxActivity";
 
     private static final ActivityLifecycle mActivityLifecycle = new ActivityLifecycle();
 
@@ -168,32 +169,34 @@ public final class RxActivity implements InvocationHandler {
             for (RxActivityInterceptor interceptor : interceptors) {
                 boolean b = interceptor.shouldInterceptorIntent(topActivity, intent);
                 if (b){
-                    onErrorOccurred(topActivity, intent, new InterruptedException("Intent is to intercept !"));
-                    return Observable.empty();
+                    InterruptedException exception = new InterruptedException("Intent is to intercept !");
+                    onErrorOccurred(topActivity, intent, exception);
+                    Log.e(TAG, "Error: ", exception);
+                    return RxObserve.returnError(exception);
                 }
                 intent = interceptor.overrideIntent(topActivity, intent);
             }
 
             if (intent == null){
-                onErrorOccurred(topActivity, intent, new NullPointerException("Intent cannot be null !"));
-                return Observable.empty();
+                NullPointerException exception = new NullPointerException("Intent cannot be null !");
+                onErrorOccurred(topActivity, intent, exception);
+                Log.e(TAG, "Error: ", exception);
+                return RxObserve.returnError(exception);
             }
 
             FragmentActivity finalTopActivity = topActivity;
-            return ActivityUtils.startActivity(topActivity, intent, enterAnim, exitAnim, activityOptions, observable).map(intent1 -> {
-                Object object = intent1;
-                for (RxActivityInterceptor interceptor : interceptors) {
-                    object = interceptor.overrideResultData(finalTopActivity, intent1);
-                }
-                return object;
+            return ActivityUtils.startActivity(topActivity, intent, enterAnim, exitAnim, activityOptions, observable)
+                    .map(intent1 -> {
+                    Object object = intent1;
+                    for (RxActivityInterceptor interceptor : interceptors) {
+                        object = interceptor.overrideResultData(finalTopActivity, intent1);
+                    }
+                    return object;
             });
         } catch (Exception e){
-            if (topActivity == null) {
-                e.printStackTrace();
-            }else {
-                onErrorOccurred(topActivity, intent, e);
-            }
-            return Observable.empty();
+            onErrorOccurred(topActivity, intent, e);
+            Log.e(TAG, "Error: ", e);
+            return RxObserve.returnError(e);
         }
     }
 

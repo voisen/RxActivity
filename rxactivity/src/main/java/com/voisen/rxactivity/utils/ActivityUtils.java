@@ -9,25 +9,24 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.voisen.rxactivity.RxObserve;
 import com.voisen.rxactivity.fragment.CallbackFragment;
 import com.voisen.rxactivity.anno.Autowired;
 import com.voisen.rxactivity.anno.SaveState;
 
 import java.lang.reflect.Field;
 
-import io.reactivex.rxjava3.core.Observable;
-
 public class ActivityUtils {
     private final static String TAG = "__ACTIVITY_CALLBACK_FRAGMENT";
 
-    public static Observable<Intent> startActivity(@NonNull FragmentActivity activity,
+    public static RxObserve<Intent> startActivity(@NonNull FragmentActivity activity,
                                                    Class<? extends FragmentActivity> clazz,
                                                    Bundle bundle,
                                                    boolean observable){
         return ActivityUtils.startActivity(activity, clazz, -1, -1, bundle, null, observable);
     }
 
-    public static Observable<Intent> startActivity(@NonNull FragmentActivity activity,
+    public static RxObserve<Intent> startActivity(@NonNull FragmentActivity activity,
                                                    Class<? extends FragmentActivity> clazz,
                                                    int enterAnim,
                                                    int exitAnim,
@@ -42,12 +41,12 @@ public class ActivityUtils {
     }
 
 
-    public static Observable<Intent> startActivity(@NonNull FragmentActivity activity,
-                                                   Intent intent,
-                                                   int enterAnim,
-                                                   int exitAnim,
-                                                   ActivityOptions activityOptions,
-                                                   boolean observable){
+    public static RxObserve<Intent> startActivity(@NonNull FragmentActivity activity,
+                                                  Intent intent,
+                                                  int enterAnim,
+                                                  int exitAnim,
+                                                  ActivityOptions activityOptions,
+                                                  boolean observable){
 
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

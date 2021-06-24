@@ -3,21 +3,14 @@ package com.voisen.rxactivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
-
 public class MainActivity extends AppCompatActivity {
 
     EditText editText;
-
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +20,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toAbout(View view) {
-        Disposable disposable = App.activitys.goAbout(editText.getText().toString()).subscribe((intent) -> {
-            editText.setText(intent.getStringExtra("date"));
-        });
-        compositeDisposable.add(disposable);
+        App.activitys.goAbout(editText.getText().toString())
+                .map(data-> data.getStringExtra("date"))
+                .then(new RxListener<String>() {
+                    @Override
+                    public void onResult(String data) {
+                        editText.setText(data);
+                    }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        showToast("出错:" + e.getLocalizedMessage());
+                    }
+                });
     }
 
     public void toSetting(View view) {
-        Disposable disposable = App.activitys.goImplicit(this.getPackageName()).subscribe((intent) -> {
+        App.activitys.goImplicit(this.getPackageName()).then((intent) -> {
             showToast(intent.getStringExtra("value"));
         });
-        compositeDisposable.add(disposable);
     }
 
     public void toFull(View view) {
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        compositeDisposable.clear();
         super.onDestroy();
     }
 
