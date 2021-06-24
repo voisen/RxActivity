@@ -17,7 +17,7 @@ public interface RxActivityInterceptor {
         return intent;
     }
 
-    default Object overrideResultData(Activity fromActivity, Intent data){
+    default Object overrideResultData(Activity fromActivity, Intent intent, Object data){
         return data;
     }
 

@@ -14,7 +14,7 @@ public class ActivityInterceptor implements RxActivityInterceptor{
     }
 
     @Override
-    public Object overrideResultData(Activity fromActivity, Intent data) {
+    public Object overrideResultData(Activity fromActivity, Intent intent, Object data) {
         Log.i(TAG, "overrideResultData: 结果值: "+ data);
         return data;
     }

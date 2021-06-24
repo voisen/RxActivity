@@ -185,11 +185,19 @@ public final class RxActivity implements InvocationHandler {
             }
 
             FragmentActivity finalTopActivity = topActivity;
-            return ActivityUtils.startActivity(topActivity, intent, enterAnim, exitAnim, activityOptions, observable)
+            RxObserve<Intent> observe = ActivityUtils.startActivity(topActivity, intent, enterAnim, exitAnim, activityOptions, observable);
+            if (observe == null){
+                return null;
+            }
+            if (interceptors.size() == 0){
+                return observe;
+            }
+            Intent finalIntent = intent;
+            return observe
                     .map(intent1 -> {
                     Object object = intent1;
                     for (RxActivityInterceptor interceptor : interceptors) {
-                        object = interceptor.overrideResultData(finalTopActivity, intent1);
+                        object = interceptor.overrideResultData(finalTopActivity, finalIntent, object);
                     }
                     return object;
             });
