@@ -3,8 +3,7 @@
 
 > 让你的Activity跳转与参数传递更简单、便捷
 
-[![Release](https://jitpack.io/v/voisen/RxActivity.svg)]
-(https://jitpack.io/#voisen/RxActivity) 
+[![Release](https://jitpack.io/v/voisen/RxActivity.svg)](https://jitpack.io/#voisen/RxActivity) 
 
 类似于 `Retrofit` 网络请求框架
 
