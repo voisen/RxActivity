@@ -31,11 +31,14 @@
 
 ````
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	...
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+		...
 	}
+	...
+}
 
 ````
 
@@ -44,8 +47,10 @@ allprojects {
 
 ````
 dependencies {
-	        implementation 'com.github.voisen:RxActivity:0.0.1-alpha'
-	}
+    ....
+    implementation 'com.github.voisen:RxActivity:0.0.1-alpha'
+    ....
+}
 	
 ````
 
