@@ -9,7 +9,7 @@ public class ActivityInterceptor implements RxActivityInterceptor{
 
     @Override
     public boolean shouldInterceptorIntent(Activity fromActivity, Intent intent) {
-        Log.i(TAG, "shouldInterceptorIntent: 是否需要拦截: "+ intent.getComponent().getClassName());
+        Log.i(TAG, "shouldInterceptorIntent: 是否需要拦截: "+ intent.getComponent());
         return false;
     }
 
