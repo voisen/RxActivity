@@ -1,0 +1,3 @@
+include ':app'
+include ':rxactivity'
+rootProject.name = "RxActivity"
