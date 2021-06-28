@@ -7,6 +7,8 @@ import com.voisen.rxactivity.anno.ExtraValue;
 import com.voisen.rxactivity.anno.IntentOptions;
 import com.voisen.rxactivity.anno.IntentValue;
 import com.voisen.rxactivity.anno.TrickActivity;
+import com.voisen.rxactivity.full.FullscreenActivity;
+import com.voisen.rxactivity.image.ImageActivity;
 
 public interface ActivityService {
 
@@ -14,7 +16,7 @@ public interface ActivityService {
      * 指定跳转的Activity为`AboutActivity`
      * @param value 传递的参数
      */
-    @TrickActivity(className = "com.voisen.rxactivity.AboutActivity")
+    @TrickActivity(className = "com.voisen.rxactivity.about.AboutActivity")
     RxObserve<Intent> goAbout(@ExtraValue("value") String value);
 
     /**

@@ -1,3 +1,5 @@
+include ':app2lib'
 include ':app'
 include ':rxactivity'
+include ':rxactivity-processor'
 rootProject.name = "RxActivity"

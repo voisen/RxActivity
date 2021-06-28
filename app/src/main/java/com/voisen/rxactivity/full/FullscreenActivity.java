@@ -1,4 +1,4 @@
-package com.voisen.rxactivity;
+package com.voisen.rxactivity.full;
 
 import android.annotation.SuppressLint;
 
@@ -10,10 +10,14 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.voisen.rxactivity.R;
+import com.voisen.rxprocessor.RxPath;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
+@RxPath("111")
 public class FullscreenActivity extends AppCompatActivity {
     /**
      * Whether or not the system UI should be auto-hidden after

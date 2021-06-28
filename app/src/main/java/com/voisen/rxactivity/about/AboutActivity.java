@@ -1,4 +1,4 @@
-package com.voisen.rxactivity;
+package com.voisen.rxactivity.about;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.voisen.rxactivity.R;
 import com.voisen.rxactivity.anno.Autowired;
 import com.voisen.rxactivity.anno.SaveState;
+import com.voisen.rxprocessor.RxPath;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@RxPath("about")
 public class AboutActivity extends AppCompatActivity {
 
     @Autowired

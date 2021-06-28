@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RxActivity">
-        <activity android:name=".ImageActivity"></activity>
+        <activity android:name=".image.ImageActivity"></activity>
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".full.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/Theme.RxActivity.Fullscreen" />
@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".about.AboutActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
