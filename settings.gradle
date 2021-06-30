@@ -1,6 +1,6 @@
-include ':rxactivity-annotations'
+include ':rxactivityannotations'
 include ':app2lib'
 include ':app'
 include ':rxactivity'
-include ':rxactivity-processor'
+include ':rxactivityprocessor'
 rootProject.name = "RxActivity"
