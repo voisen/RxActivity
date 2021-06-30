@@ -1,7 +1,11 @@
-plugins {
-    id 'java-library'
-}
+apply plugin: 'java-library'
+apply plugin: 'com.github.dcendents.android-maven'
 
+group="com.github.voisen"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_7
