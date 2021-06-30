@@ -1,4 +1,4 @@
-package com.voisen.rxactivity.anno;
+package com.voisen.rxactivity.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

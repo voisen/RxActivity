@@ -1,4 +1,4 @@
-package com.voisen.rxactivity.anno;
+package com.voisen.rxactivity.annotations;
 
 import com.voisen.rxactivity.RxIntentType;
 

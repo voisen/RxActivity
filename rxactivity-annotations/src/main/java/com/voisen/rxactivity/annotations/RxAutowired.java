@@ -1,4 +1,4 @@
-package com.voisen.rxactivity.anno;
+package com.voisen.rxactivity.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -7,12 +7,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Extra parameters for the intent !
+ * Automatically import the Intent extra parameters !
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.PARAMETER)
+@Target(ElementType.FIELD)
 @Inherited
-public @interface RxExtraValue {
-    String key() default "";
+public @interface RxAutowired {
     String value() default "";
+    String key() default "";
+    boolean ignoreNull() default true;
 }

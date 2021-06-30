@@ -6,16 +6,15 @@ import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.voisen.rxactivity.anno.RxGreenChannel;
-import com.voisen.rxactivity.anno.RxIntentOptions;
-import com.voisen.rxactivity.anno.RxActivity;
-import com.voisen.rxactivity.anno.RxFragment;
+import com.voisen.rxactivity.annotations.RxActivity;
+import com.voisen.rxactivity.annotations.RxFragment;
+import com.voisen.rxactivity.annotations.RxGreenChannel;
+import com.voisen.rxactivity.annotations.RxIntentOptions;
 import com.voisen.rxactivity.entity.RxIntent;
+import com.voisen.rxactivity.interfaces.IRxNavigation;
 import com.voisen.rxactivity.utils.RxActivityUtils;
 import com.voisen.rxactivity.lifecycle.RxActivityLifecycle;
-import com.voisen.rxactivity.utils.RxNull;
-import com.voisen.rxprocessor.interfaces.IRxNavigation;
-import com.voisen.rxprocessor.utils.RxPackageGenUtils;
+import com.voisen.rxactivity.utils.RxPackageGenUtils;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -107,7 +106,9 @@ public final class RxNavigation implements InvocationHandler {
                 fClass = Class.forName(s);
             }
             if (fClass != null){
-                return fClass.newInstance();
+                IRxNavigation navigation = (IRxNavigation) fClass.newInstance();
+                String realClass = navigation.getRealClass();
+                return Class.forName(realClass).newInstance();
             }
         } catch (Exception e) {
             e.printStackTrace();

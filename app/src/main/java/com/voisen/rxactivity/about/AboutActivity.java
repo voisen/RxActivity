@@ -9,9 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.voisen.rxactivity.R;
-import com.voisen.rxactivity.anno.RxAutowired;
-import com.voisen.rxactivity.anno.RxSaveState;
-import com.voisen.rxprocessor.RxPath;
+import com.voisen.rxactivity.annotations.RxAutowired;
+import com.voisen.rxactivity.annotations.RxPath;
+import com.voisen.rxactivity.annotations.RxSaveState;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

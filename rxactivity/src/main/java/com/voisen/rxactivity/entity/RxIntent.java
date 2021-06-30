@@ -11,14 +11,14 @@ import android.util.Log;
 
 import com.voisen.rxactivity.BuildConfig;
 import com.voisen.rxactivity.RxIntentType;
-import com.voisen.rxactivity.anno.RxExtraValue;
-import com.voisen.rxactivity.anno.RxIntentOptions;
-import com.voisen.rxactivity.anno.RxIntentValue;
-import com.voisen.rxactivity.anno.RxActivity;
+import com.voisen.rxactivity.RxNull;
+import com.voisen.rxactivity.annotations.RxActivity;
+import com.voisen.rxactivity.annotations.RxExtraValue;
+import com.voisen.rxactivity.annotations.RxIntentOptions;
+import com.voisen.rxactivity.annotations.RxIntentValue;
+import com.voisen.rxactivity.interfaces.IRxNavigation;
 import com.voisen.rxactivity.utils.RxBundleUtils;
-import com.voisen.rxactivity.utils.RxNull;
-import com.voisen.rxprocessor.interfaces.IRxNavigation;
-import com.voisen.rxprocessor.utils.RxPackageGenUtils;
+import com.voisen.rxactivity.utils.RxPackageGenUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -187,7 +187,7 @@ public class RxIntent {
                     String className = IRxNavigation.PACKAGE_NAME + "." + RxPackageGenUtils.getClassName(path);
                     try {
                         IRxNavigation activityPath = (IRxNavigation) Class.forName(className).newInstance();
-                        String activityClass = activityPath.getActivityClass();
+                        String activityClass = activityPath.getRealClass();
                         pathMap.put(path, activityClass);
                         intent.setClassName(activity, activityClass);
                     } catch (Exception e) {

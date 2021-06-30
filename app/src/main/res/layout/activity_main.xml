@@ -8,51 +8,74 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_img"
-        android:src="@mipmap/ic_launcher"
-        android:onClick="showImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:orientation="vertical"
+           android:gravity="center"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <FrameLayout
+               android:id="@+id/content"
+               android:layout_width="match_parent"
+               android:layout_height="200dp"/>
 
-    <TextView
-        android:text="点击图标看大图"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+           <ImageView
+               android:id="@+id/iv_img"
+               android:src="@mipmap/ic_launcher"
+               android:onClick="showImg"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
 
-    <EditText
-        android:layout_marginTop="20dp"
-        android:id="@+id/et_value"
-        android:hint="值(value)"
-        android:text="RxActivity Default Value"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+           <TextView
+               android:text="点击图标看大图"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
 
-    <Button
-        android:text="关于"
-        android:onClick="toAbout"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:text="设置(隐式启动)"
-        android:onClick="toSetting"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+           <EditText
+               android:layout_marginTop="20dp"
+               android:id="@+id/et_value"
+               android:hint="值(value)"
+               android:text="RxActivity Default Value"
+               android:layout_width="match_parent"
+               android:layout_height="40dp"/>
 
-    <Button
-        android:text="跳转(无回参)"
-        android:onClick="toFull"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+           <Button
+               android:text="关于"
+               android:onClick="toAbout"
+               android:layout_marginTop="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+           <Button
+               android:text="设置(隐式启动)"
+               android:onClick="toSetting"
+               android:layout_marginTop="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
 
-    <Button
-        android:text="登录页(无回参)"
-        android:onClick="toLogin"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+           <Button
+               android:text="跳转(无回参)"
+               android:onClick="toFull"
+               android:layout_marginTop="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+
+           <Button
+               android:text="登录页(无回参)"
+               android:onClick="toLogin"
+               android:layout_marginTop="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+
+
+           <Button
+               android:text="展示Fragment"
+               android:onClick="showFragment"
+               android:layout_marginTop="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+       </LinearLayout>
+   </ScrollView>
 
 </LinearLayout>

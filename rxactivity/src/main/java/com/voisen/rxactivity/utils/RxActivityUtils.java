@@ -12,9 +12,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.voisen.rxactivity.RxActivityObserve;
+import com.voisen.rxactivity.annotations.RxAutowired;
+import com.voisen.rxactivity.annotations.RxSaveState;
 import com.voisen.rxactivity.fragment.RxCallbackFragment;
-import com.voisen.rxactivity.anno.RxAutowired;
-import com.voisen.rxactivity.anno.RxSaveState;
 
 import java.lang.reflect.Field;
 

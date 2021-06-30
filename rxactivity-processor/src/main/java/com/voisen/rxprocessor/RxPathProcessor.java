@@ -4,10 +4,13 @@ import com.google.auto.service.AutoService;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
-import com.voisen.rxprocessor.interfaces.IRxNavigation;
-import com.voisen.rxprocessor.utils.RxPackageGenUtils;
+import com.voisen.rxactivity.annotations.RxPath;
+import com.voisen.rxactivity.interfaces.IRxNavigation;
+import com.voisen.rxactivity.utils.RxPackageGenUtils;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -26,7 +29,6 @@ import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
 @SupportedOptions("module")
-@SupportedAnnotationTypes("com.voisen.rxprocessor.RxPath")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @AutoService(Processor.class)
 public class RxPathProcessor extends AbstractProcessor {
@@ -34,6 +36,11 @@ public class RxPathProcessor extends AbstractProcessor {
     private Messager messager;
     private Filer envFiler;
 
+
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        return Collections.singleton(RxPath.class.getCanonicalName());
+    }
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
@@ -65,7 +72,7 @@ public class RxPathProcessor extends AbstractProcessor {
         if (value.length() == 0) throw new AssertionError("RxPath: 请指定 `path` 的值");
         String className = RxPackageGenUtils.getClassName(value);
         messager.printMessage(Diagnostic.Kind.WARNING, "生成类: "+ className);
-        MethodSpec overMethod = MethodSpec.methodBuilder("getActivityClass")
+        MethodSpec overMethod = MethodSpec.methodBuilder("getRealClass")
                 .addAnnotation(Override.class)
                 .addCode("return $S;", activity)
                 .returns(String.class)

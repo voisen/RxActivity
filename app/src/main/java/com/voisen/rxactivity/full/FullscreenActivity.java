@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.voisen.rxactivity.R;
-import com.voisen.rxprocessor.RxPath;
+import com.voisen.rxactivity.annotations.RxPath;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

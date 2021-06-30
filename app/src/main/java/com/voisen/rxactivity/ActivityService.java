@@ -3,10 +3,13 @@ package com.voisen.rxactivity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 
-import com.voisen.rxactivity.anno.RxExtraValue;
-import com.voisen.rxactivity.anno.RxIntentOptions;
-import com.voisen.rxactivity.anno.RxIntentValue;
-import com.voisen.rxactivity.anno.RxActivity;
+import androidx.fragment.app.Fragment;
+
+import com.voisen.rxactivity.annotations.RxActivity;
+import com.voisen.rxactivity.annotations.RxExtraValue;
+import com.voisen.rxactivity.annotations.RxFragment;
+import com.voisen.rxactivity.annotations.RxIntentOptions;
+import com.voisen.rxactivity.annotations.RxIntentValue;
 import com.voisen.rxactivity.full.FullscreenActivity;
 import com.voisen.rxactivity.image.ImageActivity;
 
@@ -41,5 +44,9 @@ public interface ActivityService {
 
     @RxActivity(path = "app2lib/login")
     void goLogin();
+
+
+    @RxFragment(path = "app2lib/fragment")
+    Fragment messageFragment();
 
 }

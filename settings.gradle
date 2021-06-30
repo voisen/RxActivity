@@ -1,3 +1,4 @@
+include ':rxactivity-annotations'
 include ':app2lib'
 include ':app'
 include ':rxactivity'

@@ -1,6 +1,9 @@
 package com.voisen.rxactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ActivityOptions;
 import android.os.Bundle;
@@ -68,5 +71,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void toLogin(View view) {
         RxNavigation.shared().create(ActivityService.class).goLogin();
+    }
+
+    public void showFragment(View view) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        Fragment fragment = fragmentManager.findFragmentByTag("FRAGMENT");
+        if (fragment == null) {
+            fragment = RxNavigation.shared().create(ActivityService.class)
+                    .messageFragment();
+            transaction.add(R.id.content, fragment, "FRAGMENT");
+        }
+        transaction.show(fragment);
+        transaction.commitNowAllowingStateLoss();
     }
 }

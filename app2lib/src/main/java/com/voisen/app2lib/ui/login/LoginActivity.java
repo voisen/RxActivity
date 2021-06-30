@@ -23,9 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.voisen.app2lib.R;
-import com.voisen.app2lib.ui.login.LoginViewModel;
-import com.voisen.app2lib.ui.login.LoginViewModelFactory;
-import com.voisen.rxprocessor.RxPath;
+import com.voisen.rxactivity.annotations.RxPath;
 
 @RxPath("app2lib/login")
 public class LoginActivity extends AppCompatActivity {
