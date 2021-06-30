@@ -1,7 +1,7 @@
 
 ### RxActivity 
 
-> 让你的Activity跳转与参数传递更简单、便捷
+> 让你的`Activity`跳转与参数传递更简单、便捷
 
 [![Release](https://jitpack.io/v/voisen/RxActivity.svg)](https://jitpack.io/#voisen/RxActivity) 
 
@@ -66,7 +66,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        RxActivity.init(this);
+        RxNavigation.init(this);
     }
 }
 
@@ -78,32 +78,42 @@ public class App extends Application {
 
 public interface ActivityService {
 
-	/**
+    /**
      * 指定跳转的Activity为`AboutActivity`
      * @param value 传递的参数
      */
-    @TrickActivity(clazz = AboutActivity.class)
-    Observable<Intent> goAbout(@ExtraValue("value") String value);
+    @RxActivity(path = "app/about")
+    RxActivityObserve<Intent> goAbout(@RxExtraValue("value") String value);
 
     /**
      * 隐式跳转到指定的Action, @IntentOptions 优先级 要小于 @IntentValue 优先级
      * @param pkgName 传入包名, 相当与调用 intent.setPackageName(pkgName)
      */
-    @IntentOptions(action = "rxactivity_test")
-    Observable<Intent> goImplicit(@IntentValue(IntentType.PackageName) String pkgName);
+    @RxIntentOptions(action = "rxactivity_test")
+    RxActivityObserve<Intent> goImplicit(@RxIntentValue(RxIntentType.PackageName) String pkgName);
 
     /**
      * 指定跳转Activity, 且无回传参数
      */
-    @TrickActivity(clazz = FullscreenActivity.class)
+    @RxActivity(clazz = FullscreenActivity.class)
     void goFullscreen();
 
     /**
      * 指定跳转Activity, 并指定跳转的`ActivityOptions`
      */
-    @TrickActivity(clazz = ImageActivity.class)
+    @RxActivity(clazz = ImageActivity.class)
     void showImage(ActivityOptions options);
+
+
+    @RxActivity(path = "app2lib/login")
+    void goLogin();
     
+    /**
+     * 获取指定路径的 fragment 实例
+     */
+    @RxFragment(path = "app2lib/fragment")
+    Fragment messageFragment();
+
 }
 
 ````
@@ -112,16 +122,22 @@ public interface ActivityService {
 
 ````java 
 
- ActivityService service = new RxActivity.Builder()
-                .create(ActivityService.class);
  //跳转到  关于界面， 并传入 Hello RxActivity
- service.goAbout('Hello RxActivity').subscribe(new Consumer<Intent>() {
-            @Override
-            public void accept(Intent intent) throws Throwable {
-                //接收回调数据
-                
-            }
-        });;
+RxNavigation.shared()
+	.create(ActivityService.class)
+	.goAbout('Hello RxActivity')
+	.map(data-> data.getStringExtra("date"))
+    .then(new RxListener<String>() {
+        @Override
+        public void onResult(String data) {
+				//数据
+        }
+
+        @Override
+        public void onError(Throwable e) {
+				//错误
+        }
+    });
 
 ````
 AboutActivity
@@ -131,7 +147,7 @@ AboutActivity
 public class AboutActivity extends AppCompatActivity {
 
     //这里用来自动注入参数
-    @Autowired //OR @Autowired("value") 指定key值
+    @RxAutowired //OR @RxAutowired("value") 指定key值
     String value;
     
     public void goBack(View view){
@@ -149,37 +165,48 @@ public class AboutActivity extends AppCompatActivity {
 
 #### 注解类
 
-`@Autowired`
+`@RxAutowired`
 
 > 被标记的变量将自动注入 `Intent` 中传递过来的值， 只要初始化了之后，即使不使用RxActivity中提供的方法跳转， 也会自动注入。`key` 指定 `Intent`中的`key`值。 
 
-`@ExtraValue`
+`@RxExtraValue`
 
 > 标记要传入到`Intent`中的变量， 必须指定`key`值
 
-`@IntentOptions`
+`@RxIntentOptions`
 
 > 设置`Intent`中相关属性值，属性的值与类型请正确设置， 该注解用于方法上， 注解优先级低于 `@IntentValue`
 
-`@IntentValue`
+`@RxIntentValue`
 
 > 设置`Intent`中相关属性值，属性的值与类型请正确设置
 
-`@SaveState`
+`@RxSaveState`
 
 > 标记`Activity`中的成员变量需要保存状态
 
-`@TrickActivity`
+`@RxActivity`
 
 > 注解需要跳转的`Activity`类， 支持类名、跳转动画设置。
+
+`@RxFragment`
+
+> 获取指定类或路径的`Fragment`实例
 
 
 #### 接口
 
 `RxActivityInterceptor`
 
-> 拦截器（需要在`RxActivity.Builder`中配置），可以在这里处理错误信息， 修改跳转前参数， 跳转后返回参数以及拦截跳转。
+> 拦截器（需要在`RxNavigation`中配置），可以在这里处理错误信息， 修改跳转前参数， 跳转后返回参数以及拦截跳转。
 
 `RxParcelable`
 
 > Parcelable 接口默认实现， 原则适用所有类。
+
+
+#### 工具类
+
+`RxActivityUtils`
+
+> 用于注入`Activity`跳转传递的`intentValue` 或者 `saveInstanceState` 的保存与恢复

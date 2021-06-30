@@ -7,12 +7,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.voisen.rxactivity.utils.ActivityUtils;
+import com.voisen.rxactivity.utils.RxActivityUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ActivityLifecycle implements Application.ActivityLifecycleCallbacks {
+public final class RxActivityLifecycle implements Application.ActivityLifecycleCallbacks {
 
     private final List<Activity> activities = new ArrayList<>();
 
@@ -28,8 +28,8 @@ public final class ActivityLifecycle implements Application.ActivityLifecycleCal
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
         activities.add(activity);
         try {
-            ActivityUtils.injectIntentBundleValues(activity.getClass(), activity.getIntent().getExtras(), activity);
-            ActivityUtils.restoreSavedInstanceState(activity.getClass(), savedInstanceState, activity);
+            RxActivityUtils.injectIntentBundleValues(activity.getClass(), activity.getIntent().getExtras(), activity);
+            RxActivityUtils.restoreSavedInstanceState(activity.getClass(), savedInstanceState, activity);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public final class ActivityLifecycle implements Application.ActivityLifecycleCal
 
     @Override
     public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
-        ActivityUtils.savedInstanceState(activity.getClass(), outState, activity);
+        RxActivityUtils.savedInstanceState(activity.getClass(), outState, activity);
     }
 
     @Override

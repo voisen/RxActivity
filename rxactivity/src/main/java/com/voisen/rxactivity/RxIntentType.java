@@ -1,6 +1,6 @@
 package com.voisen.rxactivity;
 
-public enum IntentType {
+public enum RxIntentType {
     /**
      * Intent.setPackageName(String)
      */

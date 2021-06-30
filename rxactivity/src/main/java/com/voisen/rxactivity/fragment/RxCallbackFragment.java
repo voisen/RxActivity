@@ -9,21 +9,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import com.voisen.rxactivity.RxObserve;
+import com.voisen.rxactivity.RxActivityObserve;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public final class CallbackFragment extends Fragment {
+public final class RxCallbackFragment extends Fragment {
 
     private final AtomicInteger mRequestCode = new AtomicInteger(0);
-    private final HashMap<Integer, RxObserve<Intent>> mCallbackMap = new HashMap<>();
+    private final HashMap<Integer, RxActivityObserve<Intent>> mCallbackMap = new HashMap<>();
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        RxObserve<Intent> subject = mCallbackMap.get(requestCode);
+        RxActivityObserve<Intent> subject = mCallbackMap.get(requestCode);
         if (subject == null){
             return;
         }
@@ -35,17 +34,17 @@ public final class CallbackFragment extends Fragment {
         mCallbackMap.remove(requestCode);
     }
 
-    public RxObserve<Intent> startActivity(Intent intent,
-                                           int enterAnim,
-                                           int exitAnim,
-                                           ActivityOptions activityOptions,
-                                           boolean observable) {
+    public RxActivityObserve<Intent> startActivity(Intent intent,
+                                                   int enterAnim,
+                                                   int exitAnim,
+                                                   ActivityOptions activityOptions,
+                                                   boolean observable) {
         FragmentActivity activity = getActivity();
-        RxObserve<Intent> subject = null;
+        RxActivityObserve<Intent> subject = null;
         Bundle optionsBundle = activityOptions == null ? null : activityOptions.toBundle();
         if (observable) {
             int requestCode = mRequestCode.getAndAdd(1);
-            subject = RxObserve.create();
+            subject = RxActivityObserve.create();
             startActivityForResult(intent, requestCode, optionsBundle);
             mCallbackMap.put(requestCode, subject);
         }else{

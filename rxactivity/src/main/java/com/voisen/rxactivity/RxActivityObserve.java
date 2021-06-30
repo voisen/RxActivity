@@ -3,7 +3,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RxObserve<T> {
+public class RxActivityObserve<T> {
     private static final String TAG = "RxActivity";
     protected List<Func> mapFuncList = new ArrayList<>();
     private ObserveResult observeResult = null;
@@ -19,8 +19,8 @@ public class RxObserve<T> {
         T1 apply(T value);
     }
 
-    public static<T> RxObserve<T> create(){
-        return new RxObserve<>();
+    public static<T> RxActivityObserve<T> create(){
+        return new RxActivityObserve<>();
     }
 
     public synchronized void error(Throwable e){
@@ -70,21 +70,21 @@ public class RxObserve<T> {
         }
     }
 
-    public static<T> RxObserve<T> returnError(Throwable throwable){
-        RxObserve<T> observe = new RxObserve<>();
+    public static<T> RxActivityObserve<T> returnError(Throwable throwable){
+        RxActivityObserve<T> observe = new RxActivityObserve<>();
         observe.error(throwable);
         return observe;
     }
 
     @SuppressWarnings("unchecked")
-    public<T1> RxObserve<T1> map(Func<T,T1> func){
+    public<T1> RxActivityObserve<T1> map(Func<T,T1> func){
         if (this.isFinalObserve){
             throw new RuntimeException("Observe has be final status !");
         }
         if (func != null) {
             mapFuncList.add(func);
         }
-        return (RxObserve<T1>) this;
+        return (RxActivityObserve<T1>) this;
     }
 
     @SuppressWarnings("unchecked")

@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-import com.voisen.rxactivity.utils.BundleUtils;
+import com.voisen.rxactivity.utils.RxBundleUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -17,7 +17,6 @@ public interface RxParcelable extends Parcelable {
         @Override
         public Object createFromParcel(Parcel source) {
             try{
-                Log.e(TAG, "创建: " + this.getClass());
                 String s = source.readString();
                 Class<?> aClass = Class.forName(s);
                 Object instance = aClass.newInstance();
@@ -38,8 +37,6 @@ public interface RxParcelable extends Parcelable {
             }catch (ClassNotFoundException | IllegalAccessException | InstantiationException e){
                 e.printStackTrace();
             }
-
-
             return null;
         }
 
@@ -64,7 +61,7 @@ public interface RxParcelable extends Parcelable {
             try {
                 field.setAccessible(true);
                 Object value = field.get(this);
-                boolean type = BundleUtils.isSupportType(value);
+                boolean type = RxBundleUtils.isSupportType(value);
                 if (type){
                     filedNames.add(field.getName());
                     valuesList.add(value);

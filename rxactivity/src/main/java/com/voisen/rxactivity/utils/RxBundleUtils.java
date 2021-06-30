@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 @SuppressWarnings("ALL")
-public class BundleUtils {
+public class RxBundleUtils {
 
     public static void putObject(Bundle bundle , @Nullable String key, @Nullable Object value) {
         if (bundle == null) return;

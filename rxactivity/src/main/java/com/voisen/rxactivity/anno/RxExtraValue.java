@@ -1,19 +1,18 @@
 package com.voisen.rxactivity.anno;
 
-import androidx.fragment.app.FragmentActivity;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Extra parameters for the intent !
+ */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target(ElementType.PARAMETER)
 @Inherited
-public @interface TrickActivity {
-    Class<? extends FragmentActivity> clazz() default FragmentActivity.class;
-    String className() default "";
-    int enterAnim() default -1;
-    int exitAnim() default -1;
+public @interface RxExtraValue {
+    String key() default "";
+    String value() default "";
 }

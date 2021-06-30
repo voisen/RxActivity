@@ -12,10 +12,4 @@ public class ActivityInterceptor implements RxActivityInterceptor{
         Log.i(TAG, "shouldInterceptorIntent: 是否需要拦截: "+ intent.getComponent());
         return false;
     }
-
-    @Override
-    public Object overrideResultData(Activity fromActivity, Intent intent, Object data) {
-        Log.i(TAG, "overrideResultData: 结果值: "+ data);
-        return data;
-    }
 }

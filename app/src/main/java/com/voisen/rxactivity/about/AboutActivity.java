@@ -9,20 +9,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.voisen.rxactivity.R;
-import com.voisen.rxactivity.anno.Autowired;
-import com.voisen.rxactivity.anno.SaveState;
+import com.voisen.rxactivity.anno.RxAutowired;
+import com.voisen.rxactivity.anno.RxSaveState;
 import com.voisen.rxprocessor.RxPath;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@RxPath("about")
+@RxPath("app/about")
 public class AboutActivity extends AppCompatActivity {
 
-    @Autowired
+    @RxAutowired
     String value;
 
-    @SaveState
+    @RxSaveState
     String time;
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

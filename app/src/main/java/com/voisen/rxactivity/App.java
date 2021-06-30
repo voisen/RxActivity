@@ -4,14 +4,11 @@ import android.app.Application;
 
 public class App extends Application {
 
-    public static ActivityService activitys;
-
     @Override
     public void onCreate() {
         super.onCreate();
-        RxActivity.init(this);
-        activitys = new RxActivity.Builder()
-                .addInterceptor(new ActivityInterceptor())
-                .create(ActivityService.class);
+        RxNavigation.init(this);
+        RxNavigation.shared()
+                .setInterceptor(new ActivityInterceptor());
     }
 }

@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 @Inherited
-public @interface IntentOptions {
+public @interface RxIntentOptions {
     String action() default "";
     int flags() default -1;
     String packageName() default "";

@@ -27,7 +27,7 @@ import com.voisen.app2lib.ui.login.LoginViewModel;
 import com.voisen.app2lib.ui.login.LoginViewModelFactory;
 import com.voisen.rxprocessor.RxPath;
 
-@RxPath("login")
+@RxPath("app2lib/login")
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;

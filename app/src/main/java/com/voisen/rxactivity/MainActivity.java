@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toAbout(View view) {
-        App.activitys.goAbout(editText.getText().toString())
+        RxNavigation.shared().create(ActivityService.class).goAbout(editText.getText().toString())
                 .map(data-> data.getStringExtra("date"))
                 .then(new RxListener<String>() {
                     @Override
@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toSetting(View view) {
-        App.activitys.goImplicit(this.getPackageName()).then((intent) -> {
+        RxNavigation.shared().create(ActivityService.class).goImplicit(this.getPackageName()).then((intent) -> {
             showToast(intent.getStringExtra("value"));
         });
     }
 
     public void toFull(View view) {
-        App.activitys.goFullscreen();
+        RxNavigation.shared().create(ActivityService.class).goFullscreen();
     }
 
     Toast toast = null;
@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void showImg(View view) {
         ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, findViewById(R.id.iv_img), "iv_img");
-        App.activitys.showImage(activityOptions);
+        RxNavigation.shared().create(ActivityService.class).showImage(activityOptions);
+    }
+
+    public void toLogin(View view) {
+        RxNavigation.shared().create(ActivityService.class).goLogin();
     }
 }
