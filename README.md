@@ -5,7 +5,7 @@
 
 [![Release](https://jitpack.io/v/voisen/RxActivity.svg)](https://jitpack.io/#voisen/RxActivity) 
 
-类似于 `Retrofit` 网络请求框架
+写法类似于 `Retrofit` 
 
 ##### 简介
 - 简化 `Activity` 跳转过程
@@ -76,6 +76,8 @@ public class App extends Application {
 ````
 
 - 创建一个`Interface` 管理 `Activity`
+
+注意：返回值只支持: `void` `RxActivityObserve<Intent>` `Fragment` `Intent`
 
 ````java
 
@@ -172,7 +174,7 @@ public class AboutActivity extends AppCompatActivity {
 
 `RxPath`
 
-> 用于标记`Activity`的路径。 
+> 用于标记`Activity`/`Fragment`的路径。 
 
 
 `@RxAutowired`
