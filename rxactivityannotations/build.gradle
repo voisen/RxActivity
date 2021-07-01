@@ -1,9 +1,9 @@
 plugins {
     id 'java-library'
-    id 'com.github.dcendents.android-maven'
+//    id 'com.github.dcendents.android-maven'
 }
 
-group="com.github.voisen"
+//group="com.github.voisen"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -13,3 +13,6 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+
+
+//apply from: '../config.gradle'
