@@ -5,11 +5,6 @@ plugins {
 group="com.github.voisen"
 
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -18,5 +13,12 @@ dependencies {
     implementation 'com.google.auto.service:auto-service:1.0'
     annotationProcessor 'com.google.auto.service:auto-service:1.0'
     implementation project(path: ':rxactivityannotations')
+}
+
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
