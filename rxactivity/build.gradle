@@ -1,8 +1,11 @@
 plugins {
     id 'com.android.library'
-    id 'maven'
-//    id 'com.github.dcendents.android-maven'
+    id 'com.github.dcendents.android-maven'
 }
+
+group="com.github.voisen"
+
+
 group="com.github.voisen"
 
 android {

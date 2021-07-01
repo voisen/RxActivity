@@ -1,5 +1,4 @@
 include ':rxactivityannotations'
-include ':app2lib'
 include ':app'
 include ':rxactivity'
 include ':rxactivityprocessor'
