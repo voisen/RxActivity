@@ -1,5 +1,5 @@
-include ':rxactivityannotations'
 include ':app'
+include ':rxactivityannotations'
 include ':rxactivity'
 include ':rxactivityprocessor'
 rootProject.name = "RxActivity"
