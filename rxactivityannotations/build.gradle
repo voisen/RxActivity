@@ -11,3 +11,10 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
 }
+
+install {
+    repositories.mavenInstaller {
+        addFilter('api') { artifact, file -> artifact.name.endsWith('api') }
+        addFilter('impl') { artifact, file -> artifact.name.endsWith('impl') }
+    }
+}

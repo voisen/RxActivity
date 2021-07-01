@@ -18,3 +18,10 @@ dependencies {
     annotationProcessor 'com.google.auto.service:auto-service:1.0'
     implementation project(path: ':rxactivityannotations')
 }
+
+install {
+    repositories.mavenInstaller {
+        addFilter('api') { artifact, file -> artifact.name.endsWith('api') }
+        addFilter('impl') { artifact, file -> artifact.name.endsWith('impl') }
+    }
+}
