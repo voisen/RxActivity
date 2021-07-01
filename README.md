@@ -107,7 +107,9 @@ public interface ActivityService {
     @RxActivity(clazz = ImageActivity.class)
     void showImage(ActivityOptions options);
 
-
+    /**
+     * 指定跳转Activity, 该Activity使用RxPath注解， 并指定值
+     */
     @RxActivity(path = "app2lib/login")
     void goLogin();
     
@@ -167,6 +169,11 @@ public class AboutActivity extends AppCompatActivity {
 
 
 #### 注解类
+
+`RxPath`
+
+> 用于标记`Activity`的路径。 
+
 
 `@RxAutowired`
 
