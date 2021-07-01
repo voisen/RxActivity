@@ -1,6 +1,7 @@
-apply plugin: 'java-library'
-apply plugin: 'com.github.dcendents.android-maven'
-
+plugins {
+    id 'java-library'
+    id 'com.github.dcendents.android-maven'
+}
 group="com.github.voisen"
 
 
@@ -19,9 +20,3 @@ dependencies {
     implementation project(path: ':rxactivityannotations')
 }
 
-install {
-    repositories.mavenInstaller {
-        addFilter('api') { artifact, file -> artifact.name.endsWith('api') }
-        addFilter('impl') { artifact, file -> artifact.name.endsWith('impl') }
-    }
-}
