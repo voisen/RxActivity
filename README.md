@@ -9,16 +9,16 @@
 
 ##### 简介
 - 简化 `Activity` 跳转过程
-- 简化 `Activity` 参数传递 `@ExtraValue`
-- 简化 `Activity` 参数传递赋值 `@Autowired`
-- 简化 `Activity` 生命周期状态自动保存 `@SaveState`
+- 简化 `Activity` 参数传递 `@RxExtraValue`
+- 简化 `Activity` 参数传递赋值 `@RxAutowired`
+- 简化 `Activity` 生命周期状态自动保存 `@RxSaveState`
 - 统一化管理 `Activity` ， 让维护更简单
 
 #### 优势
 - 注解式指定要跳转的 `Activity`
 - 支持隐式跳转等功能
 - 全局可拦截`Activity`跳转， 权限控制更方便
-- `RxObserve` 加持的`OnActivityResult`， 免去很多过程
+- `RxActivityObserve` 加持的`onActivityResult`， 免去很多过程
 - 参数传递到目标`Activity`后支持注解式赋值， 无需特殊处理
 - 支持注解式自动保存与恢复`Activity`状态信息（例如屏幕旋转值丢失问题）
 
@@ -43,16 +43,19 @@ allprojects {
 ````
 
 
-- Step 2. Add the dependency
+- Step 2. Add the dependency ,
+TAG: [![Release](https://jitpack.io/v/voisen/RxActivity.svg)](https://jitpack.io/#voisen/RxActivity) 
 
 ````
 dependencies {
     ....
-    implementation 'com.github.voisen:RxActivity:0.0.1-alpha'
+	 implementation 'com.github.voisen.rxactivity:rxactivity:TAG'
+    annotationProcessor 'com.github.voisen.RxActivity:rxactivityprocessor:TAG'
     ....
 }
 	
 ````
+
 
 ## Coding
 
